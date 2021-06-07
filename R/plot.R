@@ -52,6 +52,9 @@ all_local %>%
 
 all_global
 
+wantedSize <- 16
+testSize <- 5
+
 ggplot(all_global, aes(group, value)) +
   geom_violin(draw_quantiles = c(0.25, 0.5, 0.75)) + 
   geom_jitter(width=0.15, mapping=aes(color=group)) +
@@ -60,6 +63,7 @@ ggplot(all_global, aes(group, value)) +
       c("IFOD2 c", "IFOD2 p")
     ),
     y_position = 6600,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -68,6 +72,7 @@ ggplot(all_global, aes(group, value)) +
       c("SD_Stream c", "SD_Stream p")
     ),
     y_position = 6300,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -76,6 +81,7 @@ ggplot(all_global, aes(group, value)) +
       c("IFOD2 c", "SD_Stream c")
     ),
     y_position = 6900,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -84,10 +90,13 @@ ggplot(all_global, aes(group, value)) +
       c("IFOD2 p", "SD_Stream p")
     ),
     y_position = 7300,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
-  theme_minimal()
+  theme_minimal(
+    base_size = wantedSize
+  )
 ggsave("global_eff.png")
 
 ggplot(all_local, aes(group, value)) +
@@ -98,6 +107,7 @@ ggplot(all_local, aes(group, value)) +
       c("IFOD2 c", "IFOD2 p")
     ),
     y_position = 6600,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -105,7 +115,8 @@ ggplot(all_local, aes(group, value)) +
     comparisons = list(
       c("SD_Stream c", "SD_Stream p")
     ),
-    y_position = 6300,
+    y_position = 6600,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -114,6 +125,7 @@ ggplot(all_local, aes(group, value)) +
       c("IFOD2 c", "SD_Stream c")
     ),
     y_position = 6900,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
@@ -122,10 +134,13 @@ ggplot(all_local, aes(group, value)) +
       c("IFOD2 p", "SD_Stream p")
     ),
     y_position = 7300,
+    textsize = testSize,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
   ) +
-  theme_minimal()
+  theme_minimal(
+    base_size = wantedSize
+  )
 ggsave("local_eff.png")
 
 
