@@ -2,7 +2,7 @@ library(ggstatsplot)
 library(tidyverse)
 library(ggsignif)
 
-# setwd("~/Desktop/iglR")
+# setwd("~/Desktop/iglR/R")
 
 # global
 IFOD2_control_global <- read_csv("matrices_excl/gretna/NetworkEfficiency/Group1/Eg.txt", col_names=F) %>%
@@ -86,7 +86,8 @@ ggplot(all_global, aes(group, value)) +
     y_position = 7300,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
-  )
+  ) +
+  theme_minimal()
 ggsave("global_eff.png")
 
 ggplot(all_local, aes(group, value)) +
@@ -123,7 +124,8 @@ ggplot(all_local, aes(group, value)) +
     y_position = 7300,
     test = t.test,
     map_signif_level = function(x) paste("p: ", signif(x, digits=2))
-  )
+  ) +
+  theme_minimal()
 ggsave("local_eff.png")
 
 
